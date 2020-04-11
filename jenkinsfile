@@ -1,29 +1,19 @@
 pipeline{
   agent any
   environment{
-       PATH= "/usr/bin/mvn:$PATH"
+       PATH="/usr/bin/mvn:$PATH"
              }
      stages{
  	stage("checkout"){
  	  steps{
-	      git "https://github.com/saptagiri1983/myProject.git"
+	      git 'https://github.com/saptagiri1983/myProject.giti'
 		}
-				}
+			}
        stage("Build"){
 	  steps{
              sh "mvn clean compile"
 		}
 	     }
 	  }
-       stage("Test"){
-     	  steps{
-             sh "mvn test"
-                }
-                     }
-      stage("package"){
-         steps{
-             sh "mvn package"
-	       }	
-      }
     }
 	
