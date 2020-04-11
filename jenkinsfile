@@ -1,11 +1,29 @@
 pipeline {
   agent any
+  tools {
+   maven  'M3'
+        }
      stages {
- 	stage('Hellow World') {
+ 	stage('checkout') {
  	  steps {
-		echo "Hello World"
+	      git 'https://github.com/saptagiri1983/myProject.git'
 		}
 				}
+       stage('Build') {
+	  steps {
+             sh 'mvn clean compile'
+		}
 	     }
 	  }
+       stage('Test') {
+     	  steps {
+             sh 'mvn test'
+                }
+                     }
+      stage('package') {
+         steps {
+             sh 'mvn package'
+	       }	
+      }
+    }
 	
